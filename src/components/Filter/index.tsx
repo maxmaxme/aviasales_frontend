@@ -1,8 +1,10 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useContext, useState } from 'react';
 import { declOfNum } from '../../helpers/numbers';
 import { addValue, removeValue } from '../../helpers/arrays';
 import { Checkbox } from '../Checkbox';
 import './index.css';
+import { AppContext } from '../../context';
+import { Types } from '../../reducers';
 
 const getCheckboxLabel = (stopCount: number) => {
   return stopCount ? declOfNum(stopCount, ['%s пересадка', '%s пересадки', '%s пересадок'])
@@ -10,29 +12,35 @@ const getCheckboxLabel = (stopCount: number) => {
 };
 
 export const Filter = () => {
-  const [selectedStopsCount, setSelectedStopsCount] = useState<number[]>([]);
-  const [stopsCount] = useState<number[]>([1, 3]);
+  const { state: { filters: { stopsCount } }, dispatch } = useContext(AppContext);
+  const [ticketsStopsCount] = useState<number[]>([1, 3]);
 
   const onChangeStopsCount = (stopCount: number) => (e: ChangeEvent<HTMLInputElement>) => {
-    setSelectedStopsCount(e.target.checked ?
-      addValue(stopCount, selectedStopsCount) :
-      removeValue(stopCount, selectedStopsCount));
+    dispatch({
+      type: Types.SetStopsCount,
+      payload: e.target.checked ?
+        addValue(stopCount, stopsCount) :
+        removeValue(stopCount, stopsCount),
+    });
   };
-  const onChangeAll = () => setSelectedStopsCount([]);
+  const onChangeAll = () => dispatch({
+    type: Types.SetStopsCount,
+    payload: [],
+  });
 
   return (
     <div className="Filter">
       <div className="Filter__header">Количество пересадок</div>
       <label className="Filter__item">
         <Checkbox
-          checked={!selectedStopsCount.length}
+          checked={!stopsCount.length}
           onChange={onChangeAll}
           title="Все"/>
       </label>
-      {stopsCount.map((stopCount) => (
+      {ticketsStopsCount.map((stopCount) => (
         <label key={stopCount} className="Filter__item">
           <Checkbox
-            checked={selectedStopsCount.includes(stopCount)}
+            checked={stopsCount.includes(stopCount)}
             onChange={onChangeStopsCount(stopCount)}
             title={getCheckboxLabel(stopCount)}/>
         </label>
