@@ -32,7 +32,3 @@
 .Checkbox__input:focus + .Checkbox__box {
   box-shadow: 0 0 0 1px var(--accent-color);
 }
-
-.Checkbox__input:checked:focus + .Checkbox__box {
-  box-shadow: 0 0 0 2px var(--accent-color);
-}
