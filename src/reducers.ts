@@ -1,3 +1,5 @@
+import { Ticket } from './entities/ticket';
+
 type ActionMap<M extends { [index: string]: any }> = {
   [Key in keyof M]: M[Key] extends undefined
     ? {
@@ -11,49 +13,23 @@ type ActionMap<M extends { [index: string]: any }> = {
 
 export enum Types {
   // eslint-disable-next-line no-unused-vars
-  Create = 'CREATE_PRODUCT',
-  // eslint-disable-next-line no-unused-vars
-  Delete = 'DELETE_PRODUCT',
+  SetTickets = 'SET_TICKETS',
   // eslint-disable-next-line no-unused-vars
   Add = 'ADD_PRODUCT',
 }
 
 // Product
 
-type ProductType = {
-  id: number;
-  name: string;
-  price: number;
+type TicketPayload = {
+  [Types.SetTickets] : Ticket[];
 }
 
-type ProductPayload = {
-  [Types.Create] : {
-    id: number;
-    name: string;
-    price: number;
-  };
-  [Types.Delete]: {
-    id: number;
-  }
-}
+export type TicketActions = ActionMap<TicketPayload>[keyof ActionMap<TicketPayload>];
 
-export type ProductActions = ActionMap<ProductPayload>[keyof ActionMap<ProductPayload>];
-
-export const productReducer = (state: ProductType[], action: ProductActions | ShoppingCartActions) => {
+export const ticketReducer = (state: Ticket[], action: TicketActions | ShoppingCartActions) => {
   switch (action.type) {
-  case Types.Create:
-    return [
-      ...state,
-      {
-        id: action.payload.id,
-        name: action.payload.name,
-        price: action.payload.price,
-      },
-    ];
-  case Types.Delete:
-    return [
-      ...state.filter((product) => product.id !== action.payload.id),
-    ];
+  case Types.SetTickets:
+    return action.payload;
   default:
     return state;
   }
@@ -67,7 +43,7 @@ type ShoppingCartPayload = {
 
 export type ShoppingCartActions = ActionMap<ShoppingCartPayload>[keyof ActionMap<ShoppingCartPayload>];
 
-export const shoppingCartReducer = (state: number, action: ProductActions | ShoppingCartActions) => {
+export const shoppingCartReducer = (state: number, action: TicketActions | ShoppingCartActions) => {
   switch (action.type) {
   case Types.Add:
     return state + 1;
