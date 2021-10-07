@@ -13,7 +13,7 @@ type InitialStateType = {
 }
 
 const initialState = {
-  tickets: ApiResponse.tickets.sort(() => .5 - Math.random()).slice(0, 10),
+  tickets: ApiResponse.tickets,
   sort: TAB_IDS.OPTIMAL,
   filters: {
     stopsCount: [],

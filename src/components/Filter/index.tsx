@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useContext, useState } from 'react';
+import React, { ChangeEvent, useContext } from 'react';
 import { declOfNum } from '../../helpers/numbers';
 import { Checkbox } from '../Checkbox';
 import './index.css';
@@ -11,8 +11,12 @@ const getCheckboxLabel = (stopCount: number) => {
 };
 
 export const Filter = () => {
-  const { state: { filters: { stopsCount } }, dispatch } = useContext(AppContext);
-  const [ticketsStopsCount] = useState<number[]>([1, 3]);
+  const { state: { tickets, filters: { stopsCount } }, dispatch } = useContext(AppContext);
+  const ticketsStopsCount = tickets.map((ticket) => ticket.segments
+    .map((segment) => segment.stops.length)
+    .reduce((accumulator, currentValue) => accumulator + currentValue, 0))
+    .filter((v, i, a) => a.indexOf(v) === i)
+    .sort();
 
   const onChangeStopsCount = (stopCount: number) => (e: ChangeEvent<HTMLInputElement>) => {
     dispatch({
