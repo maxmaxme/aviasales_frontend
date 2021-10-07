@@ -1,0 +1,30 @@
+.Filter {
+  background: var(--background-block-color);
+  border-radius: 5px;
+  box-shadow: 0 2px 8px var(--shadow-color);
+  padding: 20px 0;
+  margin-right: 20px;
+  width: 252px;
+  height: fit-content;
+}
+
+.Filter__header {
+  text-transform: uppercase;
+  padding: 0 20px 10px;
+
+  font-size: 12px;
+  line-height: 12px;
+  font-weight: 600;
+}
+
+.Filter__item {
+  display: block;
+  padding: 10px 20px;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.Filter__item:hover {
+  cursor: pointer;
+  background: var(--filters-hover-color);
+}

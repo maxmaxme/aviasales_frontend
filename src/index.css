@@ -9,9 +9,11 @@ body {
 
 :root {
   --background-site-color: #F3F7FA;
-  --background-ticket-color: #fff;
+  --background-block-color: #fff;
+  --filters-hover-color: #F1FCFF;
   --shadow-color: rgba(0, 0, 0, 0.1);
   --accent-color: #2196F3;
+  --checkbox-border-color: #9ABBCE;
   --primary-color: #4A4A4A;
   --secondary-color: #A0B0B9;
 }

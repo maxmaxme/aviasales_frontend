@@ -5,6 +5,7 @@
 }
 
 .App__content {
+  display: flex;
   margin: 0 auto;
   width: 754px;
 }

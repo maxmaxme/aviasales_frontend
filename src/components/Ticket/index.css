@@ -1,6 +1,6 @@
 .Ticket {
   padding: 20px;
-  background: var(--background-ticket-color);
+  background: var(--background-block-color);
   border-radius: 5px;
   box-shadow: 0 2px 8px var(--shadow-color);
 }
