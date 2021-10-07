@@ -1,13 +1,14 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-  sans-serif;
+  font-family: var(--font);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 :root {
+  --font: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
   --background-site-color: #F3F7FA;
   --background-block-color: #fff;
   --filters-hover-color: #F1FCFF;
@@ -15,5 +16,7 @@ body {
   --accent-color: #2196F3;
   --checkbox-border-color: #9ABBCE;
   --primary-color: #4A4A4A;
+  --light-color: #FFFFFF;
   --secondary-color: #A0B0B9;
+  --filters-separator-color: #DFE5EC;
 }

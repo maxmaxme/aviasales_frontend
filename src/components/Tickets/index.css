@@ -3,5 +3,9 @@
 }
 
 .Tickets__ticket {
-  padding: 5px 0;
+  padding-bottom: 20px;
+}
+
+.Tickets__ticket:last-child {
+  padding-bottom: 0;
 }

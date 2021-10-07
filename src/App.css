@@ -7,5 +7,6 @@
 .App__content {
   display: flex;
   margin: 0 auto;
+  padding: 10px 0;
   width: 754px;
 }
