@@ -1,14 +1,11 @@
-import React from 'react';
-import { Ticket as TicketType } from '../../entities/ticket';
+import React, { useContext } from 'react';
 import { Ticket } from '../Ticket';
 import './index.css';
 import { ShowMoreButton } from '../ShowMoreButton';
+import { AppContext } from '../../context';
 
-type Params = {
-  tickets: TicketType[],
-}
-
-export const Tickets = ({ tickets }: Params) => {
+export const Tickets = () => {
+  const { state: { tickets } } = useContext(AppContext);
   return (
     <div className="Tickets">
       <div className="Tickets__list">
