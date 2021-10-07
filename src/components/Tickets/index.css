@@ -1,4 +1,4 @@
-.Tickets {
+.Tickets__list {
   width: 502px;
 }
 
@@ -8,4 +8,8 @@
 
 .Tickets__ticket:last-child {
   padding-bottom: 0;
+}
+
+.Tickets__showMoreButton {
+  margin-top: 20px;
 }

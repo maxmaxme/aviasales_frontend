@@ -1,0 +1,17 @@
+.ShowMoreButton {
+  padding: 15px 20px;
+  text-align: center;
+  background: var(--accent-color);
+  color: var(--light-color);
+  border-radius: 5px;
+  text-transform: uppercase;
+  cursor: pointer;
+
+  font-family: var(--font);
+  border: 0;
+  width: 100%;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
