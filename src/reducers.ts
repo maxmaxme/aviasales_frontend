@@ -18,6 +18,10 @@ export enum Types {
   // eslint-disable-next-line no-unused-vars
   SetSort = 'SET_SORT',
   // eslint-disable-next-line no-unused-vars
+  AddStopCount = 'ADD_STOP_COUNT',
+  // eslint-disable-next-line no-unused-vars
+  RemoveStopCount = 'REMOVE_STOP_COUNT',
+  // eslint-disable-next-line no-unused-vars
   SetStopsCount = 'SET_STOPS_COUNT',
   // eslint-disable-next-line no-unused-vars
   Add = 'ADD_PRODUCT',
@@ -42,6 +46,8 @@ export const ticketReducer = (state: Ticket[], action: TicketActions | ShoppingC
 
 type FiltersPayload = {
   [Types.SetStopsCount] : number[];
+  [Types.AddStopCount] : number;
+  [Types.RemoveStopCount] : number;
 }
 
 export type FiltersActions = ActionMap<FiltersPayload>[keyof ActionMap<FiltersPayload>];
@@ -52,6 +58,19 @@ export const filtersReducer = (state: {stopsCount: number[]}, action: TicketActi
     return {
       ...state,
       stopsCount: action.payload,
+    };
+  case Types.AddStopCount:
+    return {
+      ...state,
+      stopsCount: !state.stopsCount.includes(action.payload) ?
+        [...state.stopsCount, action.payload] : state.stopsCount,
+    };
+  case Types.RemoveStopCount:
+    return {
+      ...state,
+      stopsCount: state.stopsCount.filter((stopCount) => {
+        return stopCount !== action.payload;
+      }),
     };
   default:
     return state;

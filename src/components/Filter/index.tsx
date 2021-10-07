@@ -1,6 +1,5 @@
 import React, { ChangeEvent, useContext, useState } from 'react';
 import { declOfNum } from '../../helpers/numbers';
-import { addValue, removeValue } from '../../helpers/arrays';
 import { Checkbox } from '../Checkbox';
 import './index.css';
 import { AppContext } from '../../context';
@@ -17,10 +16,8 @@ export const Filter = () => {
 
   const onChangeStopsCount = (stopCount: number) => (e: ChangeEvent<HTMLInputElement>) => {
     dispatch({
-      type: Types.SetStopsCount,
-      payload: e.target.checked ?
-        addValue(stopCount, stopsCount) :
-        removeValue(stopCount, stopsCount),
+      type: e.target.checked ? Types.AddStopCount : Types.RemoveStopCount,
+      payload: stopCount,
     });
   };
   const onChangeAll = () => dispatch({
