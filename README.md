@@ -1,3 +1,3 @@
-# Template
+# Aviasales test task
 
-Empty template with React, Typescript, ESLint and Jest
+https://github.com/KosyanMedia/test-tasks/tree/master/aviasales_frontend

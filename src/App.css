@@ -1,0 +1,10 @@
+.App {
+  color: var(--primary-color);
+  background: var(--background-site-color);
+  min-height: 100vh;
+}
+
+.App__content {
+  margin: 0 auto;
+  width: 754px;
+}

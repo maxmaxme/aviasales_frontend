@@ -1,0 +1,21 @@
+.TicketSegment {
+  display: flex;
+}
+
+.TicketSegment__data {
+  flex: 1;
+  font-weight: 600;
+}
+
+.TicketSegment__dataHeader {
+  color: var(--secondary-color);
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.TicketSegment__dataText {
+  font-size: 14px;
+  line-height: 20px;
+}

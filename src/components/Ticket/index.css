@@ -1,0 +1,25 @@
+.Ticket {
+  padding: 20px;
+  background: var(--background-ticket-color);
+  border-radius: 5px;
+  box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.Ticket__header {
+  display: flex;
+}
+
+.Ticket__price {
+  flex: 1;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--accent-color);
+}
+
+.Ticket__segments {
+  margin-top: 20px;
+}
+
+.Ticket__segment:not(:first-child) {
+  margin-top: 10px;
+}
