@@ -1,5 +1,5 @@
 import React, { createContext, useReducer, Dispatch } from 'react';
-import { ticketReducer, shoppingCartReducer, TicketActions, ShoppingCartActions, SortActions, sortReducer, FiltersActions, filtersReducer } from './reducers';
+import { ticketReducer, TicketActions, SortActions, sortReducer, FiltersActions, filtersReducer } from './reducers';
 import { Ticket } from './entities/ticket';
 import ApiResponse from './tickets.json';
 import { TAB_IDS, TabIds } from './entities/tab';
@@ -10,7 +10,6 @@ type InitialStateType = {
   filters: {
     stopsCount: number[],
   };
-  shoppingCart: number;
 }
 
 const initialState = {
@@ -19,22 +18,20 @@ const initialState = {
   filters: {
     stopsCount: [],
   },
-  shoppingCart: 0,
 };
 
 const AppContext = createContext<{
   state: InitialStateType;
-  dispatch: Dispatch<TicketActions | SortActions | ShoppingCartActions | FiltersActions>;
+  dispatch: Dispatch<TicketActions | SortActions | FiltersActions>;
 }>({
   state: initialState,
   dispatch: () => null,
 });
 
-const mainReducer = ({ tickets, sort, filters, shoppingCart }: InitialStateType, action: SortActions | TicketActions | ShoppingCartActions | FiltersActions) => ({
+const mainReducer = ({ tickets, sort, filters }: InitialStateType, action: SortActions | TicketActions | FiltersActions) => ({
   filters: filtersReducer(filters, action),
   sort: sortReducer(sort, action),
   tickets: ticketReducer(tickets, action),
-  shoppingCart: shoppingCartReducer(shoppingCart, action),
 });
 
 
