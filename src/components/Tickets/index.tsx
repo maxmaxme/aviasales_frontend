@@ -4,9 +4,10 @@ import './index.css';
 import { ShowMoreButton } from '../ShowMoreButton';
 import { AppContext } from '../../context';
 import { TAB_IDS } from '../../entities/tab';
+import Spinner from '../Spinner';
 
 export const Tickets = () => {
-  const { state: { tickets, filters: { stopsCount, ticketsLimit }, sort } } = useContext(AppContext);
+  const { state: { loading, tickets, filters: { stopsCount, ticketsLimit }, sort } } = useContext(AppContext);
   const filteredTickets = tickets.filter((ticket) => {
     if (stopsCount.length) {
       const ticketStopsCount = ticket.segments
@@ -52,6 +53,7 @@ export const Tickets = () => {
           <ShowMoreButton />
         </div>
       )}
+      {loading && <div className="Tickets__spinner"><Spinner /></div>}
     </div>
   );
 };

@@ -14,7 +14,7 @@ type ActionMap<M extends { [index: string]: any }> = {
 
 export enum Types {
   // eslint-disable-next-line no-unused-vars
-  SetTickets = 'SET_TICKETS',
+  AddTickets = 'ADD_TICKETS',
   // eslint-disable-next-line no-unused-vars
   SetSort = 'SET_SORT',
   // eslint-disable-next-line no-unused-vars
@@ -25,26 +25,30 @@ export enum Types {
   SetStopsCount = 'SET_STOPS_COUNT',
   // eslint-disable-next-line no-unused-vars
   LoadMoreTickets = 'LOAD_MORE_TICKETS',
+  // eslint-disable-next-line no-unused-vars
+  SetLoading = 'SET_LOADING',
 }
 
-export type Actions = TicketActions | SortActions | FiltersActions;
+export type Actions = TicketActions | SortActions | FiltersActions | LoadingActions;
 
-// Product
+// Tickets
 
 type TicketPayload = {
-  [Types.SetTickets] : Ticket[];
+  [Types.AddTickets] : Ticket[];
 }
 
 export type TicketActions = ActionMap<TicketPayload>[keyof ActionMap<TicketPayload>];
 
 export const ticketReducer = (state: Ticket[], action: Actions) => {
   switch (action.type) {
-  case Types.SetTickets:
-    return action.payload;
+  case Types.AddTickets:
+    return state.concat(...action.payload);
   default:
     return state;
   }
 };
+
+// Filters
 
 type FiltersPayload = {
   [Types.SetStopsCount] : number[];
@@ -96,6 +100,23 @@ export type SortActions = ActionMap<SortPayload>[keyof ActionMap<SortPayload>];
 export const sortReducer = (state: TabIds, action: Actions) => {
   switch (action.type) {
   case Types.SetSort:
+    return action.payload;
+  default:
+    return state;
+  }
+};
+
+// Loading
+
+type LoadingPayload = {
+  [Types.SetLoading] : boolean;
+}
+
+export type LoadingActions = ActionMap<LoadingPayload>[keyof ActionMap<LoadingPayload>];
+
+export const loadingReducer = (state: boolean, action: Actions) => {
+  switch (action.type) {
+  case Types.SetLoading:
     return action.payload;
   default:
     return state;

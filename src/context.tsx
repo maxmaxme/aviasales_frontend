@@ -1,10 +1,10 @@
 import React, { createContext, useReducer, Dispatch } from 'react';
-import { ticketReducer, sortReducer, filtersReducer, Actions } from './reducers';
+import { ticketReducer, sortReducer, filtersReducer, Actions, loadingReducer } from './reducers';
 import { Ticket } from './entities/ticket';
-import ApiResponse from './tickets.json';
 import { TAB_IDS, TabIds } from './entities/tab';
 
 type InitialStateType = {
+  loading: boolean,
   tickets: Ticket[];
   sort: TabIds;
   filters: {
@@ -14,7 +14,8 @@ type InitialStateType = {
 }
 
 const initialState = {
-  tickets: ApiResponse.tickets,
+  loading: true,
+  tickets: [],
   sort: TAB_IDS.OPTIMAL,
   filters: {
     ticketsLimit: 5,
@@ -30,12 +31,12 @@ const AppContext = createContext<{
   dispatch: () => null,
 });
 
-const mainReducer = ({ tickets, sort, filters }: InitialStateType, action: Actions) => ({
+const mainReducer = ({ tickets, sort, filters, loading }: InitialStateType, action: Actions) => ({
+  loading: loadingReducer(loading, action),
   filters: filtersReducer(filters, action),
   sort: sortReducer(sort, action),
   tickets: ticketReducer(tickets, action),
 });
-
 
 const AppProvider: React.FC = ({ children }: any) => {
   const [state, dispatch] = useReducer(mainReducer, initialState);

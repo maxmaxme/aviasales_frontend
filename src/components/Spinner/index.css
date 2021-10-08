@@ -1,0 +1,26 @@
+.Spinner circle {
+  stroke: var(--accent-color);
+  fill: none;
+  animation: 4s spinner-animation1 infinite linear, 3s spinner-animation2 infinite linear;
+}
+
+@keyframes spinner-animation1 {
+  from {
+    stroke-dasharray: 100 0;
+  }
+  50% {
+    stroke-dasharray: 0 100;
+  }
+  to {
+    stroke-dasharray: 100 0;
+  }
+}
+
+@keyframes spinner-animation2 {
+  from {
+    stroke-dashoffset: 75;
+  }
+  to {
+    stroke-dashoffset: 375;
+  }
+}
