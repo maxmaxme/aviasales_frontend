@@ -6,13 +6,13 @@ import { AppContext } from '../../context';
 import { TAB_IDS } from '../../entities/tab';
 
 export const Tickets = () => {
-  const { state: { tickets, filters, sort } } = useContext(AppContext);
+  const { state: { tickets, filters: { stopsCount, ticketsLimit }, sort } } = useContext(AppContext);
   const filteredTickets = tickets.filter((ticket) => {
-    if (filters.stopsCount.length) {
+    if (stopsCount.length) {
       const ticketStopsCount = ticket.segments
         .map((segment) => segment.stops.length)
         .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-      return filters.stopsCount.includes(ticketStopsCount);
+      return stopsCount.includes(ticketStopsCount);
     }
 
     return true;
@@ -41,15 +41,17 @@ export const Tickets = () => {
   return (
     <div className="Tickets">
       <div className="Tickets__list">
-        {sortedTickets.slice(0, 5).map((ticket, index) => (
+        {sortedTickets.slice(0, ticketsLimit).map((ticket, index) => (
           <div key={index} className="Tickets__ticket">
             <Ticket ticket={ticket} />
           </div>
         ))}
       </div>
-      <div className="Tickets__showMoreButton">
-        <ShowMoreButton />
-      </div>
+      {sortedTickets.length > ticketsLimit && (
+        <div className="Tickets__showMoreButton">
+          <ShowMoreButton />
+        </div>
+      )}
     </div>
   );
 };
