@@ -31,9 +31,9 @@ const getStopsText = (stopsCount: number) => {
 
 export const TicketSegment = ({ segment }: Params) => {
   const departureDate = new Date(segment.date);
-  const departureDateHM = `${withZero(departureDate.getHours())}:${withZero(departureDate.getMinutes())}`;
+  const departureDateHM = `${withZero(departureDate.getUTCHours())}:${withZero(departureDate.getUTCMinutes())}`;
   const arrivalDate = new Date(departureDate.getTime() + segment.duration * 60000);
-  const arrivalDateHM = `${withZero(arrivalDate.getHours())}:${withZero(arrivalDate.getMinutes())}`;
+  const arrivalDateHM = `${withZero(arrivalDate.getUTCHours())}:${withZero(arrivalDate.getUTCMinutes())}`;
 
   return (
     <div className="TicketSegment">

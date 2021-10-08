@@ -9,6 +9,10 @@
   display: flex;
 }
 
+.Ticket__carrierLogo {
+  font-size: 0;
+}
+
 .Ticket__price {
   flex: 1;
   font-size: 24px;

@@ -3,8 +3,13 @@
 }
 
 .TicketSegment__data {
+  margin-left: 20px;
   flex: 1;
   font-weight: 600;
+}
+
+.TicketSegment__data:first-child {
+  margin-left: 0;
 }
 
 .TicketSegment__dataHeader {
@@ -17,5 +22,5 @@
 
 .TicketSegment__dataText {
   font-size: 14px;
-  line-height: 20px;
+  line-height: 21px;
 }
