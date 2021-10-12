@@ -2,7 +2,7 @@
   background: var(--background-block-color);
   border-radius: 5px;
   box-shadow: 0 2px 8px var(--shadow-color);
-  padding: 20px 0;
+  padding: 20px 0 10px;
   margin-right: 20px;
   width: 252px;
   height: fit-content;
