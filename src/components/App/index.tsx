@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Tickets } from '../Tickets';
 import { Filter } from '../Filter';
 import { Tabs } from '../Tabs';
@@ -11,10 +11,11 @@ import { AppContext } from '../../context';
 
 export const App = () => {
   const { dispatch } = useContext(AppContext);
+  const [useFallbackApi, setUseFallbackApi] = useState(false);
 
   useEffect(() => {
-    resolveSearchId()
-      .then((searchId) => resolveTickets(searchId,
+    resolveSearchId(useFallbackApi)
+      .then((searchId) => resolveTickets(useFallbackApi, searchId,
         ((tickets) => {
           dispatch({
             type: Types.AddTickets,
@@ -26,17 +27,18 @@ export const App = () => {
           type: Types.SetLoading,
           payload: false,
         });
-      });
-  }, []);
+      })
+      .catch(() => setUseFallbackApi(true));
+  }, [useFallbackApi]);
 
   return (
     <div className="App">
-      <Header/>
+      <Header />
       <div className="App__content">
-        <Filter/>
+        <Filter />
         <div>
-          <Tabs/>
-          <Tickets/>
+          <Tabs />
+          <Tickets />
         </div>
       </div>
     </div>
